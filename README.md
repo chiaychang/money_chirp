@@ -50,11 +50,11 @@ function awesomeThing() {
 
 ## Authors
 
-* **Joy Chia-Yu Chang** - *Initial work* - [Joy Chia-Yu Chang](https://github.com/chiaychang)
-* **Adrian J. Segura** - *Initial work* - [Adrian J. Segura](https://github.com/adi727)
-* **Sarah Mandley** - *Initial work* - Sarah Mandley](https://github.com/saerieanna)
+* **Joy Chia-Yu Chang** - *Initial work* - [GitHub](https://github.com/chiaychang)
+* **Adrian J. Segura** - *Initial work* - [GitHub](https://github.com/adi727)
+* **Sarah Mandley** - *Initial work* - [GitHub](https://github.com/saerieanna)
 * **Ornella Hernandez** - *Initial work* - [Ornella Hernandez](https://github.com/ornibella)
-* **Andreas Papazafeiropoulos** - *Initial work* - [Andreas Papazafeiropoulos](https://github.com/AndreasPapaz)
+* **Andreas Papazafeiropoulos** - *Initial work* - [GitHub](https://github.com/AndreasPapaz)
 
 
 
