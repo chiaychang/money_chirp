@@ -10,8 +10,7 @@ module.exports = function(sequelize, DataTypes) {
 		// },
 		email: {
 			type: DataTypes.STRING,
-			// primaryKey: true,
-			allNulll: false,
+			allowNull: false,
 			unique: true,
 			validate: {
 				isEmail: true
@@ -19,11 +18,14 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		password: {
 			type: DataTypes.STRING,
-			allNulll: false
+			allowNull: false,
+			// validate: {
+			// 	len: [6, 18]
+			// }
 		},
 		companyId: {
-			type: DataTypes.STRING,
-			allNulll: true
+ 			type: DataTypes.STRING,
+			allowNull: true
 		}
 	}, {
 		instanceMethods: {
@@ -39,7 +41,11 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		//connecting info here to the following companies table
 		classMethods: {
-			
+			associate: function(models) {
+				//new JOIN table
+				// User.belongsToMany(models.company_list, {through: models.Following})
+				User.belongsToMany(models.company_list, {through: 'Following'})
+			},
 			validPassword: function(password, passwd, done, user) {
 				bcrypt.compare(password, passwd, function(err, isMatch){
 					if (err) console.log(err);
@@ -54,10 +60,6 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		timestamps: false
 	});
-
-	// const this.mc_user = sequelize.define(this.mc_user, {
-	// 	following: DataTypes.STRING
-	// });
 
 	return User;
 };

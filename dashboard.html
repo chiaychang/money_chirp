@@ -9,7 +9,7 @@
     <title>Chart</title>
 </head>
 <!-- Custom CSS -->
-<link rel="stylesheet" type="text/css" href="/CSS/dashboard.css">
+<link rel="stylesheet" type="text/css" href="public/assets/css/style.css">
 <!--  jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-3">Money Chirp <img src="/images/twitter.png" style="width: 60px; height: 60px"></h1>
+            <h1 class="display-3">Money Chirp <img src="./public/images/twitter.png" style="width: 60px; height: 60px"></h1>
             <p class="lead">Never miss out on what's happening.</p>
             <hr class="my-4">
             <h6>Add Company to List</h6>
@@ -67,64 +67,44 @@
     <script type="text/javascript">
     var companiesArray = [];
     var companiesScore = [];
-
     $(document).ready(function() {
-
         var companyIndex = 1;
         //add company function
         $("#addBtn").click(function() {
             event.preventDefault();
             var companyPicked = $("#addInput").val();
-
             console.log(companyPicked);
-
-
             //*** need to figure out how to empty input after selected one company 
             // $("#addInput").removeAttr('value');
-
             var displayBtn = $("<button>").addClass("mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent");
             displayBtn.text(companyPicked);
             displayBtn.addClass(companyIndex);
             $("#following").append(displayBtn);
             $("#following").append("  ");
-
             companiesArray.push(companyPicked);
-
             var newChartData = {
                 labels: companiesArray,
                 data: []
             }
-
             $.post("api/chartData", newChartData, function(data) {
                 console.log("hi!");
-
                 console.log(data);
                 companiesScore = data.data;
-
                 // setTimeout(function() {
                 //     console.log(data.data);
                 // }, 6000);
-
             }); //*** delete buttons go with companies followed ---- spacing CSS issues --- will work on this later
-
             // var deleteBtn = $("<button>").addClass(companyIndex);
             // deleteBtn.addClass("deleteBtn mdl-button mdl-js-button mdl-button--raised").text("delete");
-
             // $("#deleteBtns").append(deleteBtn);
             // $("#deleteBtns").append("  ");
-
             companyIndex++;
-
         });
-
         $("#runBtn").click(function() {
             
             runChart();
-
         });
     });
-
-
     function runChart() {
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {

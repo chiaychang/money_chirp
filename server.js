@@ -19,6 +19,8 @@ var db = require("./models");
 var app = express();
 // var PORT = process.env.PORT || 3000;
 app.set("port", (process.env.PORT || 3000));
+//run get calls to BARCHART api
+// var Client = require('node-rest-client').Client;
 
 //set up for the express app to handle data parsing
 app.use(bodyParser.json());
@@ -30,12 +32,11 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
-app.use("/static", express.static(path.join(__dirname, "/public")));
+app.use("/static", express.static(path.join(__dirname, "public")));
+//to the Css path
+app.use(express.static(path.join(__dirname, "/public")));
 //set up for static directory
 // app.use(express.static(process.cwd() + "./public"));
-
-//need this line to access the CSS file//
-app.use(express.static(path.join(__dirname, "/public")));
 
 // set up for passport test
 app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
@@ -47,9 +48,7 @@ require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
 require("./routes/data-api-routes.js")(app);
-
-// var twitter = require("./twitter");
-// twitter.getParams();
+require("./routes/barchart-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.

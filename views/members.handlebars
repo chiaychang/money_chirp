@@ -1,12 +1,3 @@
-
-<div class="row">
-	<center>
-	{{!-- handle bars to insert into main.handlebars CENTER--}}
-	<div class="col-md-8 col-sm-5 col-xs-5">
-		<h4>hi and welcome</h4>
-		{{#each mc_user}}
-
-		{{/each}}
 <div class="container-fluid">
 
 	<div class="container">
@@ -15,35 +6,77 @@
 		</div>
 	</div>	
 
-	<h6>Add Company</h6>
 
-	<input class="awesomplete" list="mylist" />
-<datalist id="mylist">
-{{!-- 	this part will be replace by helper {{#each company}}{{/each}} --}}
-	<option>APPLE</option>
-	<option>GOOGLE</option>
-	<option>TESLA</option>
-	<option>MICROSOFT</option>
-	<option>IBM</option>
-	<option>WALMART</option>
-	<option>SNAPCHAT</option>
-</datalist>
+	{{!-- <form class="search-add">
+		<div class="form-group">
+			<input type="search" class="form-group" id="search-input" placeholder="AAPL">
+			<button type="submit" class="btn btn-default"> Search </button>
+		</div>
+	</form> --}}
 
-		{{!-- <button type="submit" class="btn btn-default">Search</button> --}}
+	<form action="/api/" method="POST">
+		<div class="row">
+			<div class="col-md-3"></div>
 
+			<div class="form-group col-md-6 col-sm-10 col-xs-10">
+
+				<center><lable for="new_company" class="companyName_placement">Follow a Stock</label>
+
+				<input type="text" name="company_name" class="form-control">
+			</div>
+
+			<div class="col-md-3"></div>
+		</div>
+
+		<center>
+			<button id="submit-button" type="submit" class="btn btn-danger">Add Stock</button>
+		</center>
 	</form>
 
-	{{!-- test  --}}
-	
-		{{!-- <div class="email-list">
-			{{#each company_name}}
-		</div> --}}
-		
 	
 
-	<div class="row">
-		<div id="memberFollowingList">
-		{{!-- add handlebars here --}}
+
+
+	<div class="container">
+		
+
+		<div class="companyFollow">
+			
+
+			<h6>These are you companies that you Follow</h6>
+				
+
+
+				{{#each company_name}} 
+					{{!-- <ul> --}}
+					{{!-- for each button i need a form action and the ID of the object --}}
+			
+					<form action="/barchart_stock/{{this.company_lists.stock_sym}}" method="POST">
+						<div class="comapny-list">
+							<li class="form-control">
+
+							{{this.company_lists.company_name}}
+
+							</li>
+							
+							<span class="input-group-btn">
+								<button class="btn btn-ingo fresh-button" type="submit">Get Quote</button>
+							</span>
+						</div>
+					</form>
+
+					{{!-- 	<button type="button" class="btn btn-primary" id="companyButton">
+						{{this.company_lists.company_name}}
+						</button>
+					</ul> --}}
+				{{/each}}
+
+
+
 		</div>
+
+
+		
 	</div>
+	
 </div>

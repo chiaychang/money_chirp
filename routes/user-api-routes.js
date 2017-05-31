@@ -15,10 +15,9 @@ module.exports = function(app) {
 			email: req.body.email,
 			password: req.body.password
 		}).then(function() {
-			// res.redirect(307, "/api/login");
 			res.redirect(307, '/api/login');
 		}).catch(function(err) {
-			res.json(err);
+			console.log(err);
 		});
 	});
 
@@ -33,10 +32,13 @@ module.exports = function(app) {
 			res.json({});
 		}
 		else {
-			res.json({
-				email: req.user.email,
-				id: req.user.id
-			});
+			// res.json({
+			// 	email: req.user.email,
+			// 	id: req.user.id
+			// });
+			console.log(req.user.email);
+			console.log(req.user.id);
+			
 		}
 	});
 };

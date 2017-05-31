@@ -3,6 +3,7 @@ var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
 
+
 passport.use(new LocalStrategy(
 {
 	usernameField: "email"
@@ -29,22 +30,11 @@ passport.use(new LocalStrategy(
 
 
 passport.serializeUser(function(user, cb) {
-
-	cb(null, user);
+  cb(null, user);
 });
-
-passport.deserializeUser(function(obj, cb) {
-	cb(null, obj);
-});
-
-module.exports = passport;
-
-//   cb(null, user);
-// });
 
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
 module.exports = passport;
-

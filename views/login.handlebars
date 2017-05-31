@@ -1,12 +1,28 @@
-<form class="login">
-    <center><h4>Welcome back, you.</h4></center>
-   <input type="email" class="form-control" id="email-input" placeholder="email"><span class="highlight"></span><span class="bar"></span>
-  
- <div class="form-group">     <input type="password" class="form-control" id="password-input" placeholder="password"><span class="highlight"></span><span class="bar"></span>
-   </div>
-  <button type="submit" class="button buttonBlue clicklogin">Login
+<div class="row">
+	<center>
+	{{!-- handle bars to insert into main.handlebars CENTER--}}
+	
+		<h4>Login</h4>
+		<div class="col-md-3 col-sm-3 col-xs-3"></div>
+		<div class="col-md-6 col-sm-6 col-xs-6">
+		<form class="login">
+			<div class="form-group">
+				<lable for="exampleInputEmail">Email</lable>
+				<input type="email" class="form-control" id="email-input" placeholder="me@email.com">
+				<span class="highlight"></span><span class="bar"></span>
+			</div>
+			<div class="form-group">	
+				<lable for="exampleInputPassword">password</lable>
+				<input type="password" class="form-control" id="password-input" placeholder="password">
+				<span class="highlight"></span><span class="bar"></span>
+			</div>
+			<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Sign up!
     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   </button>
-  <center> <p> or <a href="/" id="returnButton">return</a> to sign up </p></center>
-  
-</form>
+			<div></div>
+			<br>
+			<center><p> New User, <a href="/" id="loginButton">Sign Up!</a></p></center>
+			</form>
+		</div>
+	</center>
+</div>
