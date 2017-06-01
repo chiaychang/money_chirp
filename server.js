@@ -24,7 +24,7 @@ app.set("port", (process.env.PORT || 3000));
 
 //set up for the express app to handle data parsing
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ exended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("handlebars", exphbs({ defaultLayout: "main", }));
 app.set("view engine", "handlebars");
