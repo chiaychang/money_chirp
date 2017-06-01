@@ -31,10 +31,10 @@ h1 { color: #636363 ; }
 
 h3 { color: #4a89dc ; }
 
-form {
+#loginSignup {
     width: 380px;
     margin: 4em auto;
-    margin-left: 55em;
+    /*margin-left: 55em;*/
     padding: 3em 2em 2em 2em;
     background: #fafafa ;
     border: 1px solid #ebebeb ;

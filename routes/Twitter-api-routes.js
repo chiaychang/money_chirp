@@ -67,33 +67,32 @@ var getTweets = function(element, index, array) {
 
 module.exports = function(app) {
 
-    app.get("/dashboard", function(req, res) {
-        res.sendFile(path.join(__dirname, "../dashboard.html"));
-    });
+    // app.get("/dashboard", function(req, res) {
+    //     res.sendFile(path.join(__dirname, "../dashboard.html"));
+    // });
 
-    app.get("/api/chartData", function(req, res) {
-        res.json(chartData);
-    });
+    // app.get("/api/chartData", function(req, res) {
+    //     res.json(chartData);
+    // });
 
-    app.post("/api/chartData", function(req, res) {
-        chartData = req.body;
-        companiesArray = req.body.labels;
+    // app.post("/api/chartData", function(req, res) {
+    //     chartData = req.body;
+    //     companiesArray = req.body.labels;
 
-        getParams();
+    //     getParams();
 
-        setTimeout(function() {
-            console.log(finalScores);
-            chartData.data = finalScores;
-            res.json(chartData);
-        }, 4000);
+    //     setTimeout(function() {
+    //         console.log(finalScores);
+    //         chartData.data = finalScores;
+    //         res.json(chartData);
+    //     }, 4000);
 
-    });
+    // });
 
-    app.post("/api/clear", function() {
-        // Empty out the arrays of data
-        chartData = [];
+    // app.post("/api/clear", function() {
+    //     // Empty out the arrays of data
+    //     chartData = [];
 
-    });
-
+    // });
 
 }

@@ -47,7 +47,7 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
-require("./routes/data-api-routes.js")(app);
+require("./routes/Twitter-api-routes.js")(app);
 require("./routes/barchart-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app

@@ -5,11 +5,11 @@ module.exports = function(app) {
 	////////////////////////// ADD COMPANY //////////////////////////////////
 	app.post("/api/", function(req, res) {
 		//test for input data
-		console.log("=========================================");
-		console.log(" ");
-		console.log("this is from the following-api... " + req.body.company_name);
-		console.log(" ");
-		console.log("=========================================");
+		// console.log("=========================================");
+		// console.log(" ");
+		// console.log("this is from the following-api... " + req.body.company_name);
+		// console.log(" ");
+		// console.log("=========================================");
 
 		var company_name = req.body.company_name;
 
@@ -30,14 +30,14 @@ module.exports = function(app) {
 				});
 				
 				//console log for testing to ensure that i am capturing the correct data
-				console.log("------------------------");
-				console.log("");
-				console.log(data[0]);
-				console.log("User ID num : " + req.user.id);
-				console.log("");
-				console.log(companyIdNum);
-				console.log(companyIdNum[0]);
-				console.log("------------------------");
+				// console.log("------------------------");
+				// console.log("");
+				// console.log(data[0]);
+				// console.log("User ID num : " + req.user.id);
+				// console.log("");
+				// console.log(companyIdNum);
+				// console.log(companyIdNum[0]);
+				// console.log("------------------------");
 
 				db.Following.create({
 					companyListId: companyIdNum[0],
