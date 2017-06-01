@@ -2,6 +2,7 @@ var db = require("../models");
 var Client = require('node-rest-client').Client;
 var client = new Client();
 
+var stockSymbolArray = []; 
 
 module.exports = function(app) {
 
@@ -18,8 +19,9 @@ module.exports = function(app) {
 			console.log("///////////////////////////////");
 			console.log("");
 			for (var i = 0; i < data.results.length; i++) {
+				stockSymbolArray.push(data.results[i].close);
 				/// joy to here
-				console.log(data.results[i].tradingDay);
+				console.log(data.results[i].close);
 			}
 			console.log("");
 			console.log("///////////////////////////////");

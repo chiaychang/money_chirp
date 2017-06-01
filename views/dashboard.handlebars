@@ -13,7 +13,16 @@
 
                          <div class="form-group col-md-6 col-sm-10 col-xs-10">
 
-                            <input type="text" name="company_name" class="{{!-- awesomplete --}}" list="mylist" id="{{!-- addInput --}} myinput">
+                            <input type="text" name="company_name" class="awesomplete" list="mylist"/>
+        
+                            <datalist id="mylist">
+                                <option>MICROSOFT</option>
+                                <option>APPLE</option>
+                                <option>TESLA</option>
+                                <option>IBM</option>
+                                <option>AMD</option>
+                            </datalist>
+
 
                         </div>
 
@@ -58,44 +67,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script type="text/javascript">
 
+    var Chart = require('chart.js');
+    var routes = require("../routes");
+    
+    function runChart() {
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: companiesArray,
+                datasets: [{
+                    data: stockSymbolArray
+                    label: ["Closing Stock Price"],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: companiesScore
+                }],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            }
+        });
+    }
 
-
-    // function runChart() {
-    //     var ctx = document.getElementById("myChart");
-    //     var myChart = new Chart(ctx, {
-    //         type: 'bar',
-    //         data: {
-    //             labels: companiesArray,
-    //             datasets: [{
-    //                 label: ["Twitter Trending Score"],
-    //                 backgroundColor: [
-    //                     'rgba(255, 99, 132, 0.2)',
-    //                     'rgba(54, 162, 235, 0.2)',
-    //                     'rgba(255, 206, 86, 0.2)',
-    //                     'rgba(75, 192, 192, 0.2)',
-    //                     'rgba(153, 102, 255, 0.2)',
-    //                     'rgba(255, 159, 64, 0.2)'
-    //                 ],
-    //                 borderColor: [
-    //                     'rgba(255,99,132,1)',
-    //                     'rgba(54, 162, 235, 1)',
-    //                     'rgba(255, 206, 86, 1)',
-    //                     'rgba(75, 192, 192, 1)',
-    //                     'rgba(153, 102, 255, 1)',
-    //                     'rgba(255, 159, 64, 1)'
-    //                 ],
-    //                 borderWidth: 1,
-    //                 data: companiesScore
-    //             }],
-    //             options: {
-    //                 responsive: true,
-    //                 maintainAspectRatio: false
-    //             }
-    //         }
-    //     });
-    // }
-
-    // runChart();
+    runChart();
 
     </script>
     <!-- browserify -->
