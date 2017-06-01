@@ -13,9 +13,6 @@
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-		<!-- Your custom styles (optional) -->
-    	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
-
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     	
@@ -27,7 +24,7 @@
     	<script type="text/javascript" href="/node_modules/mdbootstrap/js/mdb.min.js"></script>
 
     	{{!-- AWESOME COMPLETE JavaScript --}}
-    	<script src="/static/js/awesomplete.js" async></script>
+    	<script src="/js/awesomplete.js"></script>
 
     	{{!-- AWESOME COMPLETE CSS --}}
     	<link rel="stylesheet" type="text/css" href="/css/awesomplete.css"/>
@@ -39,17 +36,41 @@
 	</head>
 	<body>
 		
-	<div class="mdl-layout mdl-js-layout">
-
+<!-- MDL navigation container -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title of the Header -->
+      <span class="mdl-layout-title">Money Chirp</span>
+      <!-- Spacer, to align items to right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation links, hidden on smaller displays -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <a class="mdl-navigation__link" href="">Following</a>
+      <a class="mdl-navigation__link" href="">Dashboard</a>
+      <a class="mdl-navigation__link" href="">About Us</a>
+	  <a class="mdl-navigation__link" href="" id="logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+      </nav>
+    </div>
+  </header>
+    
+    <!-- Drawer container -->
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Money Chirp</span>
+    <!-- navigation Container, with links -->
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Following</a>
+      <a class="mdl-navigation__link" href="">Dashboard</a>
+      <a class="mdl-navigation__link" href="">About Us</a>
+      <a class="mdl-navigation__link" href="" id="logout2"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+    </nav>
+  </div>
 		<main style="flex: 1 0 auto;">
 		       <div class="container">
 		            
 		            <div>
-		                                
-		                <center>
-		                    <h1 class="title">Money Chirp</h1>
-		                </center>
-		                
+		                               	                
 		                <center>
 		                
 		                {{{ body }}}
@@ -59,18 +80,39 @@
 		        </div>
 		</main>
 
-
 		<footer class="mdl-mini-footer" id="footer">
 			<div class="mdl-mini-footer__left-section">
 				<div class="mdl-logo">MoneyChirp</div>
 				<ul class="mdl-mini-footer__link-list">
 					<li><a href="#">About Us</a></li>
 					<li><a href="#">Privacy & Terms</a></li>
+					<li><a href="#">Company Index</a></li>
 				</ul>
 			</div>
 		</footer>
 		
 	</div>
 
-	</body>
+</body>
+
+{{!-- logout link script --}}
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+$("#logout").trigger("click");
+$("#logout").on("click", function(){
+   alert("it works!");
+});
+
+$("#logout2").trigger("click");
+$("#logout2").on("click", function(){
+   alert("it works!");
+});
+
+});	
+
+</script>
+
+
 </html>
