@@ -44,8 +44,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-var routes = require("./routes/html-routes.js");
-
 require("./routes/html-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/company-api-routes.js")(app);
@@ -56,7 +54,6 @@ require("./routes/barchart-api-routes.js")(app);
 // force: false to maintain all data. true for testing.
 //test
 db.sequelize.sync({ force: false }).then(function() {
-	app.use('/', routes);
 	app.listen(app.get("port"), function() {
 		console.log("Chirp! you are on PORT : " + app.get("port"));
 	});
