@@ -1,20 +1,20 @@
 $(document).ready(function() {
 
+getData();
 
-    // $(document).on("click", "#testStock", function()) {
+function getData() {
+    $.get("/api/lists", function(data) {
+        var twitterList = [];
+        var stockList = [];
 
-    //     var stock = $(this).attr('data-value');
-
-    //     alert("HEY");
-
-    // };
-
-    $(document).on("click", ".testStockSym", function() {
-        // var company = $(this).attr('data-value');
-        var company = $(this).text();
-
-        alert(company);
+        for (var i = 0; i < data.length; i++) {
+            twitterList.push(data[i].company_lists.twitter_handle);
+            stockList.push(data[i].company_lists.stock_sym);
+        }
+        console.log("twitter list " + twitterList);
+        console.log("stock list " + stockList);
     });
+}
 
 //////////////////////////////// CHARTJS ////////////////////////////////////////
     var ctx = document.getElementById("myChart").getContext('2d');

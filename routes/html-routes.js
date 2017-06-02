@@ -88,11 +88,35 @@ module.exports = function(app) {
 			});
 	});
 
+	//test function for calling back data for charts.js
+	app.get("/api/lists", isAuthenticated, function(req, res) {
+
+		db.User.findAll({
+			where: {
+				id: req.user.id
+			},
+			include: [ db.company_list ],
+			raw: true,
+			nest: true,
+		}).then(function(data) {
+			res.json(data);
+		});
+
+	});
+
 	app.get("/barchart", isAuthenticated, function(req, res) {
 
 		var hbsObject = {};
 
 		res.render("barchart", hbsObject);
+
+	});
+
+	app.get("/dashboard", isAuthenticated, function(req, res) {
+
+		var hbsObject = {};
+
+		res.render("dashboard", hbsObject);
 
 	});
 
