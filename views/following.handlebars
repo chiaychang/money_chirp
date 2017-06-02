@@ -1,50 +1,70 @@
 <link rel="stylesheet" type="text/css" href="/css/awesomplete.css"/>
-<br>
-  <div class="container">
-        <div class="jumbotron">
-            <br><br>
-            <h6>Add Company to List</h6>
-            <form action="/api/" method="POST">
-                <div class="row">
-                    <div class="col-md-3"></div>
+<br><br>
+    <div class="jumbotron">
+        <br><br>
+        <h6>Add Company to List</h6>
+        <form action="/api/" method="POST">
+            <div class="row">
+                <div class="col-md-3"></div>
 
-                         <div class="form-group col-md-6 col-sm-10 col-xs-10">
+                     <div class="form-group col-md-6 col-sm-10 col-xs-10">
 
-                            <input type="text" name="company_name" class="awesomplete" list="mylist" id="myinput"/>
-        
-                        </div>
+                        <input type="text" name="company_name" class="awesomplete" list="mylist" id="myinput"/>
+    
+                    </div>
 
-                    <div class="col-md-3"></div>
-                 </div>
+                <div class="col-md-3"></div>
+             </div>
 
-                <center>
-                    <button id="submit-button runBtn" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add Stock</button>
-                </center>
-            </form>
-        
-
-            
-            <div class="col-md-12">
-                <h4 class="followingList">Companies</h4>
-
-                <div id="companies_list">
-                    {{#each company_name}}
-                    <form action="/company_delete/{{this.company_lists.id}}" method="POST">
-                        <div class="input-group">
-                            <li lass="form-control">{{this.company_lists.company_name}}</li>
+            <center>
+                <button id="submit-button runBtn" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add Stock</button>
+            </center>
+        </form>
+    
+        <br>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Company Name</th>
+                  <th>@Twitter</th>
+                  <th>$</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              {{#each company_name}}
+                {{#if company_lists.company_name}}
+              <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">{{this.company_lists.company_name}}</td>
+                  <td>{{this.company_lists.twitter_handle}}</td>
+                  <td>{{this.company_lists.stock_sym}}</td>
+                  <td>
+                    
+                        <form action="/company_delete/{{this.company_lists.id}}" method="POST">
                             <span class="input-group-btn">
                                 <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="addBtn" type="submit">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </span>
-                        </div>
-                    </form>
-                    {{/each}}
-                </div>
-            </div>
+                        </form>
+
+                  </td>
+                  {{else}}
+                    <td class="empty">Start Following</td>
+                    <td>....</td>
+                    <td>....</td>
+                    <td>....</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+              </tbody>
+        </table>
 
 
-</div>
+    </div>
+
+
+
 <script src="/static/js/awesomplete.js" async></script>
 <script src="/static/js/dataList.js" async></script>
    
