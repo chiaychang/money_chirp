@@ -54,6 +54,7 @@ require("./routes/barchart-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
+//test
 db.sequelize.sync({ force: false }).then(function() {
 	app.use('/', routes);
 	app.listen(app.get("port"), function() {
