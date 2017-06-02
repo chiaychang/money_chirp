@@ -7,14 +7,12 @@ $(document).ready(function() {
 
 	function getData() {
 	    $.get("/api/lists", function(data) {
-	        var twitterList = [];
-	        var stockList = [];
-
+		    
 	        for (var i = 0; i < data.length; i++) {
 	            twitterList.push(data[i].company_lists.twitter_handle);
 	            stocks.push(data[i].company_lists.stock_sym);
+			
 	        }
-	        console.log("twitter list " + twitterList);
 	        console.log("stock list " + stocks);
 
 
