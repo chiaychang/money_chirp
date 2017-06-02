@@ -9,16 +9,25 @@ Include a one or two screenshots of main UI/UX points of your app and how it sol
 
 ## Technologies used
 You can give a brief listing of the technologies you've learned and applied here
-- node.js
+
+**Database**
+- MySQL
+
+**Server-side Framework**
+- Node.js
+
+**npm packages**
 - Express
-- Handblebars
-- mysql
-- seqeulize npm
-- passport.js
-- bcrypt authentication
+- Seqeulize
+- Passport.js
+- bcrypt
+
+**APIs**
 - Twitter API
 - Barchart API
-- chart.js
+
+**Additional Tech**
+- Chart.js
 
 ## Getting Started
 
