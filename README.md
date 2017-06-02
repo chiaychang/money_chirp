@@ -5,7 +5,14 @@ The app will give the user a sense of weather or not a stock may tank or strike 
 be able to add companies and delete companies to follow through an autocomplete search. 
 
 ## Screenshots
-![Image of Homepage](http://i.imgur.com/OGse89k.jpg?1)
+Sign Up Page
+![Image of Homepage- Sign Up](http://i.imgur.com/OGse89k.jpg?1)
+
+Returning User Log-In Page
+![Image of Homepage-User Log-In](http://i.imgur.com/LbuEmab.jpg)
+
+Dashboard
+![Image of Use Dashboard]()
 
 ## Technologies used
 
