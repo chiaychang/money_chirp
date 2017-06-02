@@ -50,7 +50,7 @@
       <a class="mdl-navigation__link" href="">Following</a>
       <a class="mdl-navigation__link" href="">Dashboard</a>
       <a class="mdl-navigation__link" href="">About Us</a>
-	  <a class="mdl-navigation__link" href="" id="logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+	  <a class="mdl-navigation__link" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
       </nav>
     </div>
   </header>
@@ -63,7 +63,7 @@
       <a class="mdl-navigation__link" href="">Following</a>
       <a class="mdl-navigation__link" href="">Dashboard</a>
       <a class="mdl-navigation__link" href="">About Us</a>
-      <a class="mdl-navigation__link" href="" id="logout2"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+      <a class="mdl-navigation__link" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
     </nav>
   </div>
 		<main style="flex: 1 0 auto;">
@@ -94,25 +94,4 @@
 	</div>
 
 </body>
-
-{{!-- logout link script --}}
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-$("#logout").trigger("click");
-$("#logout").on("click", function(){
-   alert("it works!");
-});
-
-$("#logout2").trigger("click");
-$("#logout2").on("click", function(){
-   alert("it works!");
-});
-
-});	
-
-</script>
-
-
 </html>
