@@ -120,5 +120,12 @@ module.exports = function(app) {
 
 	});
 
+	app.get("/heatmap", isAuthenticated, function(req, res) {
+
+		var hbsObject = {};
+
+		res.render("heatmap", hbsObject);
+
+	});
 	
 };
