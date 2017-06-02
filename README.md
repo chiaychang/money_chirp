@@ -1,8 +1,6 @@
 # Money Chirp
 
-Using a database of publicly traded companies, a user can create a unique profile to follow a companies stock price and twitter trending score.
-The app will give the user a sense of weather or not a stock may tank or strike up in the market if there is a high trending score. The user will 
-be able to add companies and delete companies to follow through an autocomplete search. 
+Using a database of publicly traded companies with barchart OnDemand and Twitter APIs, users can create a unique profile of companies to follow and compare a company's stock price and Twitter trending score to make executive calls on whether to invest or sell a company's stock! With our all-in-one dashboard, users will have a rich platform they can use to gain new insights utilizing the pulse of social media to beat Wall Street!
 
 ## Screenshots
 Sign Up Page
