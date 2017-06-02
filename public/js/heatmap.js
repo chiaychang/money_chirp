@@ -1,6 +1,7 @@
 $(document).ready(function() {
         
 	var stocks = [];
+	var twitterList = [];
 	var stocksUrl = stocks.join('%20');
 
 	getData();
