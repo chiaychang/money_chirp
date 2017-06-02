@@ -8,7 +8,6 @@ be able to add companies and delete companies to follow through an autocomplete 
 Include a one or two screenshots of main UI/UX points of your app and how it solves a problem
 
 ## Technologies used
-You can give a brief listing of the technologies you've learned and applied here
 
 **Database**
 - MySQL
@@ -28,6 +27,7 @@ You can give a brief listing of the technologies you've learned and applied here
 
 **Additional Tech**
 - Chart.js
+- Handlebars.js
 
 ## Getting Started
 
