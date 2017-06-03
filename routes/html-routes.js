@@ -11,13 +11,59 @@ var Twitter = require('twitter');
 var client = new Twitter(accountInfo);
 
 
+///////////////// JOYS RUN CHART //////////////////////////////////////////////
+function runChart(chartData, chartScore) {
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData,
+                datasets: [{
+                    label: ["Twitter Trending Score"],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: chartScore
+                }],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            }
+        });
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
 
 module.exports = function(app) {
 	
 	app.get("/", function(req, res) {
 
 		if (req.user) {
-			res.redirect("/following");
+			res.redirect("/dashboard");
 			// res.redirect("/members");
 			return false;
 		}
@@ -28,7 +74,7 @@ module.exports = function(app) {
 		var hbsObject = {};
 			
 		if (req.user) {
-			res.render("following", hbsObject);
+			res.render("dashboard", hbsObject);
 			// res.render("members", hbsObject);
 		}
 
@@ -59,7 +105,8 @@ module.exports = function(app) {
 		// 	});
 	});
 
-	app.get("/following", isAuthenticated, function(req, res) {
+	// testing for dashboard JOY PLEASE READ!!! I THINK WE CAN CREATE AN ARRY HERE TO SET UP FOR THE CHART.JS
+	app.get("/dashboard", isAuthenticated, function(req, res) {
 
 		db.User.findAll({
 				where: {
@@ -84,55 +131,17 @@ module.exports = function(app) {
 					TwitterArray: companiesArray
 				};
 
-				res.render("following", hbsObject);
+				res.render("dashboard", hbsObject);
 			});
 	});
 
-	//test function for calling back data for charts.js
-	app.get("/api/lists", isAuthenticated, function(req, res) {
-
-		db.User.findAll({
-			where: {
-				id: req.user.id
-			},
-			include: [ db.company_list ],
-			raw: true,
-			nest: true,
-		}).then(function(data) {
-			res.json(data);
-		});
-
-	});
-
-	app.get("/barchart", isAuthenticated, function(req, res) {
-
+	app.get("/aboutUs", function(req, res) {
 		var hbsObject = {};
+			
+		
 
-		res.render("barchart", hbsObject);
-
+		res.render("aboutUs", hbsObject);
 	});
 
-	app.get("/dashboard", isAuthenticated, function(req, res) {
-
-		var hbsObject = {};
-
-		res.render("dashboard", hbsObject);
-
-	});
-
-	app.get("/heatmap", isAuthenticated, function(req, res) {
-
-		var hbsObject = {};
-
-		res.render("heatmap", hbsObject);
-
-	});
 	
-	app.get("/deleteaccount", isAuthenticated, function(req, res) {
-
-		var hbsObject = {};
-
-		res.render("deleteaccount", hbsObject);
-
-	});
 };
