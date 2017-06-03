@@ -26,7 +26,7 @@ $(document).ready(function() {
 
             $.getJSON(url, function(data) {
 
-                console.log(data);
+                // console.log(data);
 
                 for (var i = 0; i < data.query.results.quote.length; i++) {
                     var stockId = '#stock-' + (i + 1);
@@ -60,6 +60,7 @@ $(document).ready(function() {
     var companySymbol;
     var stockPrices = [];
     var stockTimes = [];
+    var lastClose;
 
 
     $(document).on("click", ".stock", function() {
@@ -77,6 +78,9 @@ $(document).ready(function() {
             companySymbol = data.symbol;
             stockPrices = data.closePrices;
             stockTimes = data.timeStamps;
+            lastClose = data.timeStamps[(data.timeStamps.length)-1];
+            // console.log(lastClose);
+            $("#closeDate").text("Last Closing Date: "+lastClose);
             runChart();
         });
 

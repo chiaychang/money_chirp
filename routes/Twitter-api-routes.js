@@ -122,7 +122,7 @@ module.exports = function(app) {
         console.log(symbol);
         getFinance(symbol);
         setTimeout(function() {
-            console.log(stockTimeArray, stockPriceArray);
+            // console.log(stockTimeArray, stockPriceArray);
             financeData.timeStamps = stockTimeArray;
             financeData.closePrices = stockPriceArray;
             res.json(financeData);
