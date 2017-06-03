@@ -41,10 +41,7 @@ app.set("view engine", "handlebars");
 
 // Serve static content for the app from the "public" directory in the application directory.
 // app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/public/css"));
-app.use(express.static(__dirname + "/public/images"));
-app.use(express.static(__dirname + "/public/js"));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(process.cwd() + "/public"));
 
 // set up for passport test
