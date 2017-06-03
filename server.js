@@ -32,12 +32,18 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
-app.use("/static", express.static(path.join(__dirname, "public")));
-//to the Css path
-app.use(express.static(path.join(__dirname, "/public")));
-// //set up for static directory
-app.use(express.static(process.cwd() + "./public"));
-app.use(express.static('./public'));
+// app.use("/static", express.static(path.join(__dirname, "public")));
+// //to the Css path
+// app.use(express.static(path.join(__dirname, "/public")));
+// // //set up for static directory
+// app.use(express.static(process.cwd() + "./public"));
+// app.use(express.static('./public'));
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public/assets/image"));
+app.use(express.static(process.cwd() + '/public'));
+app.use(logger("/"));
 
 // set up for passport test
 app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
