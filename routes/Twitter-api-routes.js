@@ -1,6 +1,6 @@
 var path = require("path");
-var chartData = require("../chartData.js");
-var financeData = require("../financeData.js");
+var chartData = require("../data/chartData.js");
+var financeData = require("../data/financeData.js");
 var Client = require('node-rest-client').Client;
 var client = new Client();
 
@@ -18,6 +18,9 @@ var finalScores = [];
 var companiesArray = [];
 var stockDataArray = [];
 var stockTimeArray = [];
+
+var TwitterReturn = [];
+
 
 // var getParams = function() {
 
@@ -43,15 +46,16 @@ var getTweets = function(element, index, array) {
 
     finalScores = [];
 
-    var params = { q: '%40' + element, count: 3, lang: 'en', result_type: popular };
+    var params = { q: '%40' + element, count: 10, lang: 'en', result_type: 'popular' };
 
     client2.get('search/tweets', params, function(error, response) {
         if (error) {
             console.log('Error occurred: ' + error);
         } else if (!error) {
 
+
             var trendingScore = 0;
-            console.log(response);
+            // console.log(response);
 
             for (j = 0; j < response.statuses.length; j++) {
 
@@ -61,10 +65,17 @@ var getTweets = function(element, index, array) {
                 console.log(postReach);
                 trendingScore += postReach;
 
+
+
             }
 
             console.log(element + ":" + trendingScore);
-            finalScores.push(trendingScore);
+            var trendingData = {
+                company: element,
+                score: trendingScore
+            }
+            TwitterReturn.push(trendingData);
+
         }
     });
 }
@@ -93,51 +104,54 @@ var getFinance = function(symbol) {
 }
 module.exports = function(app) {
 
-app.get("/dashboard2", function(req, res) {
-    res.sendFile(path.join(__dirname, "../dashboard.html"));
-});
+    app.get("/dashboard2", function(req, res) {
+        res.sendFile(path.join(__dirname, "../dashboard.html"));
+    });
 
-app.get("/api/chartData", function(req, res) {
-    res.json(chartData);
-});
-
-app.post("/api/chartData", function(req, res) {
-    chartData = req.body;
-    companiesArray = req.body.labels;
-
-    companiesArray.forEach(getTweets);
-
-    setTimeout(function() {
-        console.log(finalScores);
-        chartData.data = finalScores;
+    app.get("/api/chartData", function(req, res) {
         res.json(chartData);
-    }, 4000);
+    });
 
-});
+    app.post("/api/chartData", function(req, res) {
 
-app.get("/api/financeData", function(req, res) {
-    res.json(financeData);
+        TwitterReturn = [];
+        chartData = req.body;
+        companiesArray = req.body.handles;
 
-});
+        companiesArray.forEach(getTweets);
 
-app.post("/api/financeData", function(req, res) {
-    financeData = req.body;
-    symbol = req.body.symbol;
-    console.log(symbol);
-    getFinance(symbol);
-    setTimeout(function() {
-        console.log(stockTimeArray, stockPriceArray);
-        financeData.timeStamps = stockTimeArray;
-        financeData.closePrices = stockPriceArray;
+        setTimeout(function() {
+
+            chartData = TwitterReturn;
+            res.json(TwitterReturn);
+
+        }, 2000);
+
+    });
+
+    app.get("/api/financeData", function(req, res) {
         res.json(financeData);
-    }, 3000);
-});
+
+    });
+
+    app.post("/api/financeData", function(req, res) {
+        financeData = req.body;
+        symbol = req.body.symbol;
+        console.log(symbol);
+        getFinance(symbol);
+        setTimeout(function() {
+            console.log(stockTimeArray, stockPriceArray);
+            financeData.timeStamps = stockTimeArray;
+            financeData.closePrices = stockPriceArray;
+            res.json(financeData);
+        }, 3000);
+    });
 
 
-app.post("/api/clear", function() {
-    // Empty out the arrays of data
-    chartData = [];
+    app.post("/api/clear", function() {
+        // Empty out the arrays of data
+        chartData = [];
 
-});
+    });
 
 }
