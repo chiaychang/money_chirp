@@ -27,26 +27,6 @@ var stockTimeArray = [];
 var TwitterReturn = [];
 
 
-// var getParams = function() {
-
-//     // need query in this part to get handels using names
-//     connection.query("Select * from companies", function(err, res) {
-//         var companyArray = [];
-
-//         if (err) {
-//             throw err;
-//         }
-//         console.log(res);
-//         for (var z = 0; z < res.length; z++) {
-//             companyArray.push(res[z].name);
-//             handleArray.push(res[z].handle);
-
-//         }
-//     console.log(companyArray, handleArray);
-// companiesArray.forEach(getTweets);
-
-// }
-
 var getTweets = function(element, index, array) {
 
     finalScores = [];
@@ -146,7 +126,7 @@ module.exports = function(app) {
             financeData.timeStamps = stockTimeArray;
             financeData.closePrices = stockPriceArray;
             res.json(financeData);
-        }, 3000);
+        }, 2000);
     });
 
 
