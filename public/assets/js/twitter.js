@@ -35,7 +35,12 @@
                     companiesScore.push(data[j].score);
                  }              
                 
+                     $.get("/api/mostPopular", function(res){
+                        console.log(res);
 
+                        $("#mostPopular").text(res);
+
+                     });
              });
 
          });

@@ -3,6 +3,7 @@ var chartData = require("../data/chartData.js");
 var financeData = require("../data/financeData.js");
 var Client = require('node-rest-client').Client;
 var client = new Client();
+var mostPopularTweet = require("../data/mostPopular.js");
 
 
 // //twitter stuff --- move to another file after testing
@@ -25,8 +26,8 @@ var stockDataArray = [];
 var stockTimeArray = [];
 var TwitterReturn = [];
 
-// var popularCount = 0;
-// var mostPopular;
+var popularCount = 0;
+var mostPopular;
 
 
 var getTweets = function(element, index, array) {
@@ -52,9 +53,9 @@ var getTweets = function(element, index, array) {
                 console.log(postReach);
                 trendingScore += postReach;
 
-                // if( postReach > popularCount){
-                    
-                // }
+                if( postReach > popularCount){
+                    mostPopular = response.statuses[j].text;
+                }
 
             }
 
@@ -101,6 +102,7 @@ module.exports = function(app) {
     app.post("/api/chartData", function(req, res) {
 
         TwitterReturn = [];
+
         chartData = req.body;
         companiesArray = req.body.handles;
 
@@ -109,6 +111,8 @@ module.exports = function(app) {
         setTimeout(function() {
 
             chartData = TwitterReturn;
+            mostPopularTweet = mostPopular; 
+            console.log(mostPopular);
             res.json(TwitterReturn);
 
         }, 2000);
@@ -140,4 +144,8 @@ module.exports = function(app) {
 
     });
 
+   app.get("/api/mostPopular", function(req, res){
+    res.json(mostPopularTweet);
+
+   });
 }
