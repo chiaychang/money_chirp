@@ -14,7 +14,7 @@ body {
 
 body {
     font-family: Helvetica;
-    background-image: url("/images/background.jpg");
+    background-image: url("/assets/images/background.jpg");
     height: 100%;
     background-size: 100%;
     position: relative;
