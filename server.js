@@ -40,10 +40,12 @@ app.set("view engine", "handlebars");
 // app.use(express.static('./public'));
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/public/assets/image"));
-app.use(express.static(process.cwd() + '/public'));
-app.use(logger("/"));
+// app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/public/assets/image"));
+// app.use(express.static(process.cwd() + '/public'));
+// app.use(logger("/"));
+
+app.use(express.static(process.cwd() + "/public"));
 
 // set up for passport test
 app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
