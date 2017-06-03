@@ -17,8 +17,9 @@ var session = require("express-session");
 var db = require("./models");
 //Set up for Express server/app
 var app = express();
-// var PORT = process.env.PORT || 3000;
-app.set("port", (process.env.PORT || 3000));
+
+var PORT = process.env.PORT || 3000;
+
 //run get calls to BARCHART api
 // var Client = require('node-rest-client').Client;
 
@@ -32,17 +33,8 @@ app.set("view engine", "handlebars");
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //the js file for the web page is in "public" folder
-// app.use("/static", express.static(path.join(__dirname, "public")));
-// //to the Css path
-// app.use(express.static(path.join(__dirname, "/public")));
-// // //set up for static directory
-// app.use(express.static(process.cwd() + "./public"));
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 
-// Serve static content for the app from the "public" directory in the application directory.
-// app.use(express.static(__dirname + "/public"));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(process.cwd() + "/public"));
 
 // set up for passport test
 app.use(session({ secret: "Money Chirp", resave: true, saveUninitialized: true }));
@@ -58,10 +50,9 @@ require("./routes/barchart-api-routes.js")(app);
 
 // set up to sync the sequelize models and start the express server/app
 // force: false to maintain all data. true for testing.
-//test
 db.sequelize.sync({ force: false }).then(function() {
-	app.listen(app.get("port"), function() {
-		console.log("Chirp! you are on PORT : " + app.get("port"));
-	});
+    app.listen(PORT, function(){
+        console.log('Server successfully connected on PORT %s', PORT);
+    });
 });
 
