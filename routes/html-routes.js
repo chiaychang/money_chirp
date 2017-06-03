@@ -128,4 +128,11 @@ module.exports = function(app) {
 
 	});
 	
+	app.get("/deleteaccount", isAuthenticated, function(req, res) {
+
+		var hbsObject = {};
+
+		res.render("deleteaccount", hbsObject);
+
+	});
 };
