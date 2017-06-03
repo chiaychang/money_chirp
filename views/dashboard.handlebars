@@ -1,29 +1,15 @@
   <script type="text/javascript" src="/assets/js/twitter.js"></script>
   <br>
         <div class="jumbotron">
-            <br><br>
-        
-            <hr class="my-4">
-            <h6>You are following:</h6>
-            <div id="following">
-
-            {{#each company_name}} 
-                <form action="/barchart_stock/{{this.company_lists.stock_sym}}" method="POST">
-                    <div>
-                        <button id="submit-button runBtn" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                            {{this.company_lists.company_name}}
-                        </button>
-                    </div>
-                </form>
-            {{/each}}
-        </div>
 
         <div class="container">
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
-                    <h2>Trending Scores</h2>
-                    <canvas id="myChart" tyle="width:400px; height:200px"></canvas>
+                    <h2>Twitter Trending Scores  <img src="/assets/images/twitter.png" style="width: 30px; height: 30px;"></h2> 
+                    <hr class="my-4">
+                    <br>
+                    <canvas id="myChart" tyle="width:480px; height:350px"></canvas>
             </div>
         </div>
 

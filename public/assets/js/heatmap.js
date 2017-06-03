@@ -41,6 +41,7 @@ $(document).ready(function() {
                     $(stockId).children('.symbol').html(stockSymbol);
                     $(stockId).children('.change').html(change);
                     $(stockId).attr("stockSymbol", stockSymbol);
+                    $(stockId).attr("companyName", )
                 }
             });
 
@@ -71,6 +72,9 @@ $(document).on("click", ".stock", function() {
         runChart();
 
     });
+
+    
+
 });
 
 
@@ -78,7 +82,7 @@ $(document).on("click", ".stock", function() {
 var runChart = function() {
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: stockTimes,
             datasets: [{
