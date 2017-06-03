@@ -23,15 +23,17 @@ var finalScores = [];
 var companiesArray = [];
 var stockDataArray = [];
 var stockTimeArray = [];
-
 var TwitterReturn = [];
+
+// var popularCount = 0;
+// var mostPopular;
 
 
 var getTweets = function(element, index, array) {
 
     finalScores = [];
 
-    var params = { q: '%40' + element, count: 10, lang: 'en', result_type: 'popular' };
+    var params = { q: '%40' + element, count: 20, lang: 'en', result_type: 'popular' };
 
     client2.get('search/tweets', params, function(error, response) {
         if (error) {
@@ -40,7 +42,7 @@ var getTweets = function(element, index, array) {
 
 
             var trendingScore = 0;
-            // console.log(response);
+            console.log(response);
 
             for (j = 0; j < response.statuses.length; j++) {
 
@@ -50,7 +52,9 @@ var getTweets = function(element, index, array) {
                 console.log(postReach);
                 trendingScore += postReach;
 
-
+                // if( postReach > popularCount){
+                    
+                // }
 
             }
 
