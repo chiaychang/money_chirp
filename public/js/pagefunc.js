@@ -11,6 +11,8 @@ $(document).ready(function() {
 	// login jQuery capture of the login form
 	var loginForm = $("form.login");
 
+    var deleteAccount = $("button.deletebutton");
+
 
 
 	signUpForm.on("submit", function(event) {
@@ -45,6 +47,21 @@ $(document).ready(function() {
         passwordInput.val("");
     });
 
+   deleteAccount.on("submit", function(event) {
+        event.preventDefault();
+        console.log("success");
+        var userData = {
+            email: emailInput.val().trim(),
+            password: passwordInput.val().trim()
+        };
+        if (!userData.email || !userData.password) {
+            return;
+        }
+
+       deleteUser(userData.email, userData.password);
+        emailInput.val("");
+        passwordInput.val("");
+    });
 
 	// searchForm.on("submit", function(event) {
 	// 	event.preventDefault();
@@ -86,44 +103,15 @@ $(document).ready(function() {
         });
     }
 
-    ////////////////////JOYS RUN CHAR FUNCTION////////////////////////////
-
-    // function runChart() {
-    //     var ctx = document.getElementById("myChart");
-    //     var myChart = new Chart(ctx, {
-    //         type: 'bar',
-    //         data: {
-    //             labels: companiesArray,
-    //             datasets: [{
-    //                 label: ["Twitter Trending Score"],
-    //                 backgroundColor: [
-    //                     'rgba(255, 99, 132, 0.2)',
-    //                     'rgba(54, 162, 235, 0.2)',
-    //                     'rgba(255, 206, 86, 0.2)',
-    //                     'rgba(75, 192, 192, 0.2)',
-    //                     'rgba(153, 102, 255, 0.2)',
-    //                     'rgba(255, 159, 64, 0.2)'
-    //                 ],
-    //                 borderColor: [
-    //                     'rgba(255,99,132,1)',
-    //                     'rgba(54, 162, 235, 1)',
-    //                     'rgba(255, 206, 86, 1)',
-    //                     'rgba(75, 192, 192, 1)',
-    //                     'rgba(153, 102, 255, 1)',
-    //                     'rgba(255, 159, 64, 1)'
-    //                 ],
-    //                 borderWidth: 1,
-    //                 data: companiesScore
-    //             }],
-    //             options: {
-    //                 responsive: true,
-    //                 maintainAspectRatio: false
-    //             }
-    //         }
-    //     });
-    // }
-
-    ///////////////////////////////////////////////////////////////////////
+    function deleteUser(email,password) {
+        $.post("/api/delete", {
+            email: email,
+        }).then(function(data) {
+            window.location.replace(data);
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }
 
 //animation for loginlogout form//
 $(window, document, undefined).ready(function() {

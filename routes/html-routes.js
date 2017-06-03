@@ -126,6 +126,13 @@ module.exports = function(app) {
 
 		res.render("aboutUs", hbsObject);
 	});
+   
+    app.get("/deleteaccount", function(req, res){
 
+    	var hbsObject = {};
+
+    	res.render("deleteaccount", hbsObject);
+
+    });
 	
 };

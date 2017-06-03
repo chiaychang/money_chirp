@@ -86,22 +86,19 @@ var getFinance = function(symbol) {
     stockTimeArray = [];
 
 
-    client.get("http://marketdata.websol.barchart.com/getHistory.json?key=5f1d20803f9a33507c2f332d07223231&symbol=" + symbol + "&type=daily&startDate=20160601000000", function(data, response) {
+    client.get("http://marketdata.websol.barchart.com/getHistory.json?key=5f1d20803f9a33507c2f332d07223231&symbol=" + symbol + "&type=daily&startDate=20170501000000", function(data, response) {
 
         for (var i = 0; i < data.results.length; i++) {
             console.log(data.results[i].close, data.results[i].timestamp);
             stockPriceArray.push(data.results[i].close);
-            stockTimeArray.push(data.results[i].timestamp);
+            stockTimeArray.push(data.results[i].timestamp.split("T").shift());
             /// joy to here
         }
 
-
     });
 
-
-
-
 }
+
 module.exports = function(app) {
 
     app.get("/dashboard2", function(req, res) {
