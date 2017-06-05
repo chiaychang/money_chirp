@@ -1,4 +1,5 @@
   <script type="text/javascript" src="/assets/js/twitter.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
   <br>
         <div class="jumbotron">
 
@@ -15,13 +16,15 @@
 
         <br><br>
         <div>
-           <div class="demo-card-square mdl-card mdl-shadow--2dp">
-           <div class="mdl-card__title mdl-card--expand">
-            <h4>Most Popular Tweet</h4><br>
+           <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+           <div class="mdl-card__title mdl-card--expand text-center" style="width: auto; height: auto">
+            <h4>Most Popular Tweets</h4><br> 
             <hr>
-           <p class="mdl-card__title-text" id="mostPopular"></p>
+            </div>
+            <div {{!-- class="mdl-card__supporting-text" --}} id="tweets">
            </div>
         </div>
+
 
     </div>
 

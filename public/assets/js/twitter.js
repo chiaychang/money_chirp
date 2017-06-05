@@ -3,6 +3,7 @@
  var companyList = [];
  var companiesScore = [];
  var companiesName = [];
+ var companiesTweets = [];
 
  $(document).ready(function() {
 
@@ -20,36 +21,30 @@
                  stockList.push(data[i].company_lists.stock_sym);
                  companyList.push(data[i].company_lists.company_name);
              }
-             console.log("twitter list " + twitterList);
-             console.log("stock list " + stockList);
-             console.log("company list" + companyList);
+             // console.log("twitter list " + twitterList);
+             // console.log("stock list " + stockList);
+             // console.log("company list" + companyList);
 
              var newChartData = {
                  handles: twitterList
              }
 
              $.post("api/chartData", newChartData, function(data) {
-                 console.log(data);
-                 for (var j = 0; j < data.length; j++){
-                    companiesName.push(data[j].company);
-                    companiesScore.push(data[j].score);
-                 }              
-                
-                     $.get("/api/mostPopular", function(res){
-                        console.log(res);
+                 // console.log(data);
+                 for (var j = 0; j < data.length; j++) {
+                     companiesName.push(data[j].company);
+                     companiesScore.push(data[j].score);
+                     companiesTweets.push(data[j].popular);
+                 }
 
-                        $("#mostPopular").text(res);
-
-                     });
              });
 
          });
 
-         // function getTweets;
-         // function getFinance;
      }
 
-      setTimeout(runChart, 5000);
+     setTimeout(runChart, 3000);
+     setTimeout(runTweets, 3000);
  });
 
 
@@ -97,5 +92,18 @@
      });
  }
 
+
+var runTweets = function(){
+
+    for (z = 0; z < companiesName.length; z++){
+
+    var tweet = $("<p>").text(companiesTweets[z]).css("color","red").css("font-size","15px");
+    var company = $("<p>").text(companiesName[z]).css("font-size","17px").css("font-weight","bold");   
+    $("#tweets").append(company, tweet);
+
+
+
+    }
+}
 
  ////////////////////////////////////////////////////////////////////////////////////////

@@ -5,9 +5,6 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 var mostPopularTweet = require("../data/mostPopular.js");
 
-
-// //twitter stuff --- move to another file after testing
-// var keys = require("../keys.js");
 var accountInfo = {
     consumer_key: '8rdeCnRswldWEIcJj7AmY9251',
     consumer_secret: 'qxo7jGTj2MuTn1YahDH2P7jb1LDCcWP1GmU5CcXpUMRk3dJRZ6',
@@ -18,7 +15,6 @@ var Twitter = require('twitter');
 var client2 = new Twitter(accountInfo);
 
 
-//twitter stuff --- move to another file after testing
 
 var finalScores = [];
 var companiesArray = [];
@@ -26,14 +22,13 @@ var stockDataArray = [];
 var stockTimeArray = [];
 var TwitterReturn = [];
 
-var popularCount = 0;
-var mostPopular;
 
-
+//get twititer data from API
 var getTweets = function(element, index, array) {
 
     finalScores = [];
 
+    //get most recent 20 pupolar tweets for reach company
     var params = { q: '%40' + element, count: 20, lang: 'en', result_type: 'popular' };
 
     client2.get('search/tweets', params, function(error, response) {
@@ -41,30 +36,36 @@ var getTweets = function(element, index, array) {
             console.log('Error occurred: ' + error);
         } else if (!error) {
 
-
+            var popularCount = 0;
+            var mostPopular;
             var trendingScore = 0;
-            console.log(response);
+            // console.log(response);
 
+            //count the total # of retweets and favorites each company gets
             for (j = 0; j < response.statuses.length; j++) {
 
                 // console.log(response.statuses[j].retweet_count, response.statuses[j].favorite_count);
                 var postReach = (response.statuses[j].retweet_count +
                     response.statuses[j].favorite_count);
-                console.log(postReach);
+                // console.log(postReach);
                 trendingScore += postReach;
 
-                if( postReach > popularCount){
+
+                if (postReach > popularCount) {
                     mostPopular = response.statuses[j].text;
                 }
 
             }
 
-            console.log(element + ":" + trendingScore);
+            // console.log(element + ":" + trendingScore);
             var trendingData = {
                 company: element,
-                score: trendingScore
+                score: trendingScore,
+                popular: mostPopular
             }
             TwitterReturn.push(trendingData);
+
+
 
         }
     });
@@ -82,18 +83,23 @@ var getFinance = function(symbol) {
             console.log(data.results[i].close, data.results[i].timestamp);
             stockPriceArray.push(data.results[i].close);
             stockTimeArray.push(data.results[i].timestamp.split("T").shift());
-            /// joy to here
+
         }
 
     });
 
 }
 
-module.exports = function(app) {
+// var runTweets = function() {
+//     var company = {
+//         name: companiesName,
+//         tweet: companiesTweets
+//     }
+//     res.render("dashboard", company);
 
-    app.get("/dashboard2", function(req, res) {
-        res.sendFile(path.join(__dirname, "../dashboard.html"));
-    });
+// }
+
+module.exports = function(app) {
 
     app.get("/api/chartData", function(req, res) {
         res.json(chartData);
@@ -111,9 +117,10 @@ module.exports = function(app) {
         setTimeout(function() {
 
             chartData = TwitterReturn;
-            mostPopularTweet = mostPopular; 
-            console.log(mostPopular);
+            // mostPopularTweet = mostPopular; 
+            // console.log(mostPopular);
             res.json(TwitterReturn);
+            // runTweets();
 
         }, 2000);
 
@@ -144,8 +151,8 @@ module.exports = function(app) {
 
     });
 
-   app.get("/api/mostPopular", function(req, res){
-    res.json(mostPopularTweet);
+    // app.get("/api/mostPopular", function(req, res){
+    //  res.json(mostPopularTweet);
 
-   });
+    // });
 }

@@ -82,11 +82,14 @@ $(document).ready(function() {
             // console.log(lastClose);
             $("#closeDate").text("Last Closing Date: "+lastClose);
             runChart();
+
         });
 
         // Apple Inc.(NASDAQ:AAPL)
 
     });
+
+
 
 
     //////////////////////////////// CHARTJS ////////////////////////////////////////
