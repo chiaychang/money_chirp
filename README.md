@@ -64,11 +64,11 @@ function awesomeThing() {
 
 ## Authors
 
-* **Joy Chia-Yu Chang** - *Initial work* - [GitHub](https://github.com/chiaychang)
-* **Adrian J. Segura** - *Initial work* - [GitHub](https://github.com/adi727)
-* **Sarah Mandley** - *Initial work* - [GitHub](https://github.com/saerieanna)
-* **Ornella Hernandez** - *Initial work* - [GitHub](https://github.com/ornibella)
-* **Andreas Papazafeiropoulos** - *Initial work* - [GitHub](https://github.com/AndreasPapaz)
+* **Joy Chia-Yu Chang** - [GitHub](https://github.com/chiaychang)
+* **Adrian J. Segura** - [GitHub](https://github.com/adi727)
+* **Sarah Mandley** - [GitHub](https://github.com/saerieanna)
+* **Ornella Hernandez** - [GitHub](https://github.com/ornibella)
+* **Andreas Papazafeiropoulos** - [GitHub](https://github.com/AndreasPapaz)
 
 
 
